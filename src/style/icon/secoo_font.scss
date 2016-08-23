@@ -1,0 +1,39 @@
+$hosts:"http://mstatic.secooimg.com/js/fonts";
+//$hosts:"/fonts";
+@font-face {
+  font-family: 'secoo';
+  src:  url('#{$hosts}/secoo.eot?mnqt3h');
+  src:  url('#{$hosts}/secoo.eot?mnqt3h#iefix') format('embedded-opentype'),
+  url('#{$hosts}/secoo.ttf?mnqt3h') format('truetype'),
+  url('#{$hosts}/secoo.woff?mnqt3h') format('woff'),
+  url('#{$hosts}/secoo.svg?mnqt3h#secoo') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="secoo_icon_"], [class*=" secoo_icon_"] {
+  font-family: 'secoo' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.secoo_icon_search:before {//搜索
+  content: "\e900";
+}
+.secoo_icon_more:before {//...
+  content: "\e901";
+}
+.secoo_icon_fenlei:before {//分类
+  content: "\e902";
+}
+.secoo_icon_back:before {//返回
+  content: "\e903";
+}
+

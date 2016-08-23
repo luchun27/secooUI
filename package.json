@@ -1,0 +1,41 @@
+{
+  "name": "activity",
+  "version": "1.0.0",
+  "description": "专题工作流",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
+    "dist": "npm run clean & copy & webpack --env=dist",
+    "lint": "eslint ./src",
+    "posttest": "npm run lint",
+    "serve": "node server.js --env=dev",
+    "serve:dist": "node server.js --env=dist",
+    "start": "node server.js --env=dev"
+  },
+  "author": "zh",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "autoprefixer-loader": "^3.2.0",
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "bower-webpack-plugin": "^0.1.9",
+    "copyfiles": "^1.0.0",
+    "eslint": "^2.13.1",
+    "eslint-loader": "^1.5.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "html-res-webpack-plugin": "^1.0.2",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.8.0",
+    "open": "^0.0.5",
+    "postcss": "^5.1.1",
+    "postcss-loader": "^0.9.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
