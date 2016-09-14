@@ -1,0 +1,86 @@
+/*搜索处理*/
+.search_all{
+  font-size: $seach_font;
+  color: $seach_font_color;
+  position: relative;
+  overflow: hidden;
+  @extend %flex_box;
+  height: $tap_height;
+  background: #ffffff;
+  .secoo_logo{
+    position: relative;
+    .secoo_logo_div{
+      @extend %absolute_reset
+    }
+    flex-grow:1;
+  }
+ .search_box.seach_box_w{
+    width: $seach_box_width;
+  }
+  .search_box{
+    width: 100%;
+    position: relative;
+    margin-left:$seach_padding_mix;
+    .seach_div{
+      .secoo_icon_search{ padding:0 $seach_padding;}
+      @extend %absolute_reset;
+      justify-content:flex-start;
+      z-index: 1;
+      background: $seach_background_color;
+      height: $seach_box_heigth;
+      top:50%;
+      margin-top: -$seach_box_heigth/2;
+
+      box-sizing: border-box;
+      .seach_input_info{
+        background: $seach_background_color;
+        @extend %flex_box;
+        position: relative;
+        justify-content:flex-start;
+        height: 100%;
+        flex-grow: 1;
+        input{
+          border: 0;
+          height: 100%;
+          width: 100%;
+          background: transparent;
+          &:focus{
+            outline: none;
+          }
+        }
+        .close.hide{
+          display: none;
+        }
+        .close{
+          @extend %absolute_reset;
+          z-index: 2;
+          width: $seach_close;
+          left: auto;
+          right: 0;
+        }
+      }
+      .cannel{
+        width: $seach_cannel_w;
+        height: 100%;
+        @extend %flex_box;
+        background: #ffffff;
+        color: #000000;
+      }
+
+    }
+    .seach_label{
+      @extend %absolute_reset;
+      position: relative;
+      height: $seach_box_heigth;
+      z-index: 2;
+      background: $seach_background_color;
+    }
+  }
+  .secoo_categroy{
+    position: relative;
+    .secoo_logo_div{
+      @extend %absolute_reset
+    }
+    flex-grow: 1;
+  }
+}
