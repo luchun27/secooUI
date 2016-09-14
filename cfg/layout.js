@@ -4,7 +4,9 @@
 let layout={
     //entryJS:'index',
     //entryHtml:'tem'
-    entryJS:'tap_bars',
-    entryHtml:'tap'
+    //entryJS:'tap_bars',
+    //entryHtml:'tap'
+    entryJS:'panel',
+    entryHtml:'panel'
 }
 module.exports=layout;
