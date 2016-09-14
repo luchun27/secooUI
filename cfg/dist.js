@@ -17,9 +17,10 @@ let config = Object.assign({}, baseConfig, {
   },
   cache: false,
   devtool: 'false',
+  //devtool: 'eval-source-map',
   plugins: [
     new webpack.optimize.DedupePlugin(),
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('css/'+layout.entryJS+'.css'),
     new HtmlResWebpackPlugin({
       filename: "./html/"+layout.entryHtml+".html",
       template: "src/tem/"+layout.entryHtml+".html",
