@@ -11,7 +11,20 @@
   }
   .secoo_icon_fenlei:before{
     font-size: 19px;
+    color: #000000;
   }
   .secoo_icon_logo:before{
     font-size: 33px;
+    color: #000000;
   }
+  .secoo_icon_delete{
+    font-size: 15px;
+    position: relative;
+  }
+  // 按钮 选中 未选中
+.secoo_icon_xuanzhong,.secoo_icon_weixuan{
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+}

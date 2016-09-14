@@ -1,0 +1,28 @@
+@function reckon($n,$l:2){
+   @if($l==1){
+      @return round($n/2/18.75*10)/10;
+   }@else{
+      @return round($n/2/18.75*100)/100;
+   }
+}
+/*字体色*/
+$global_color_font: #ffffff;
+$global_color_font_1: #1A191E;
+
+
+/*背景色*/
+$global_color_background: #E93B39;
+
+/*边线色*/
+
+
+/*框内 小边距*/
+$global_min_padding:16px/2;
+
+
+/*框外 上线间距*/
+$global_min_margin:20px/2;
+
+
+/*整体左右间距*/
+$left_right:reckon(30rem);

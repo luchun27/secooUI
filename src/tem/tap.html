@@ -86,11 +86,11 @@
         <div class="content">
             <div>
                  <span>
-                    标题
+                    标题1
                     <footer class="width3"></footer>
                 </span>
                 <span>
-                    标题
+                    标题2
                     <footer></footer>
                 </span>
             </div>
@@ -100,21 +100,39 @@
         </div>
     </header>
 
-<!--搜索-->
-    <div class="searchbox">
-        <div>
-
+    <div style="width: 100%; height: 30px;"></div>
+<!--首页 搜索-->
+    <div class="search_all">
+        <div class="secoo_logo">
+            <span class="secoo_icon_logo secoo_logo_div"></span>
         </div>
-        <div class="">
+        <div class="search_box seach_box_w" id="search_box">
             <form>
-                <label class="">
+                <div class="seach_div">
+                   <div class="seach_input_info">
+                        <span class="secoo_icon_search"></span>
+                        <input class="search_input" id="search_input">
+
+                        <div class="close hide">
+                            <span class="secoo_icon_delete">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                            </span>
+                        </div>
+                   </div>
+                    <a class="cannel" href="javascript:;">取消</a>
+                </div>
+                <label class="seach_label" for="search_input">
                     <span class="secoo_icon_search"></span><span>搜索:分类 品牌 系列 商品</span>
                 </label>
             </form>
         </div>
-        <div>
-
+        <div class="secoo_categroy">
+            <span class="secoo_icon_fenlei secoo_logo_div"></span>
         </div>
     </div>
+<!--搜索end-->
+<script src="http://mstatic.secooimg.com/js/zepto.min.js?t=20151115"></script>
 </body>
 </html>

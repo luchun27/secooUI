@@ -2,7 +2,7 @@
 $tap_height:reckon(88rem);
 $tap_font_size:reckon(34rem);//中间字体大小
 $tap_font_size_1:reckon(28rem);//右边按钮大小
-$header_padding:reckon(30rem);
+$header_padding:$left_right;
 $tap_border_btm:.5px;//距底 边线
 $tap_border_btm_color:#eeeeee;//边线颜色
 
@@ -15,10 +15,16 @@ $border_btm_height:3px;//底下划线高度
 $active_color:#dddddd;
 
 /*搜索设置*/
-
 $seach_font:13px;
 $seach_font_color:#bbbbbb;
+$seach_background_color:#f5f5f5;
+$seach_box_width:reckon(560rem);
+$seach_box_heigth:reckon(62rem);
 
+$seach_padding:reckon(18rem);
+$seach_padding_mix:reckon(13rem);
+$seach_cannel_w:reckon(100rem);
+$seach_close:reckon(50rem);
 
 
 

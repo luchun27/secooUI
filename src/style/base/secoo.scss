@@ -39,12 +39,10 @@
    user-select: none;
 }
 body{@extend .no_select; background: #f5f5f5}
-@function reckon($n,$l:2){
-   @if($l==1){
-      @return round($n/2/18.75*10)/10;
-   }@else{
-      @return round($n/2/18.75*100)/100;
-   }
-}
-//默认页面 w
+
+//默认页面
 .margin_max{margin: 0 reckon(30rem)}
+.in_pl{padding-left: $global_min_padding;}
+.in_pr{padding-right: $global_min_padding;}
+.out_margin_top{margin-top: $global_min_margin}
+.out_margin_bottom{margin-bottom: $global_min_margin}
