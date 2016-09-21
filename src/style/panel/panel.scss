@@ -1,0 +1,103 @@
+@import "../base/init";
+@import "../base/libs/secoo_panel";
+@import "../icon/secoo_icon_font";
+a{color: $cell_font_color}
+.cell{
+  overflow: hidden;
+  font-size: $cell_font;
+  position: relative;
+  height: $cell_height;
+  display: flex;
+  padding: 0 $left_right;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: $cell_back_color;
+  div{
+    flex-grow: 1;
+  }
+  %icon{width:$cell_min_icon; height: $cell_min_icon;}
+  p{
+      @extend %icon;
+      img{
+        @extend %icon;
+      }
+  }
+  .info{
+    text-align: right;
+    color: $cell_font_color2;
+  }
+  .gray{
+    color: $cell_font_color3;
+  }
+  .red{
+      background-color: $global_color_background;
+      color: $global_color_font;
+      flex-grow: inherit;
+      border-radius: 50px;
+      padding: $cell_min_padding_1 $global_min_padding;
+  }
+  span{
+    color: $cell_font_color4;
+  }
+}
+.clell_border{
+  &:before{
+    content: ' ';
+    border-bottom: 1px solid $cell_border_color;
+    height: 1px;
+    position: absolute;
+    transform: scaleY(.5);
+    transform-origin: 0 0;
+    left: $left_right;
+    width: 100%;
+    top:0;
+    z-index: 2;
+  }
+}
+a.cell{
+  &:visited{
+    background-color:$cell_back_color2;
+  }
+  &:active{
+    background-color: $cell_back_color2;
+  }
+}
+.cell.form{
+  input,select{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    outline:none;
+  }
+  div{
+    flex-grow: inherit;
+  }
+  div:first-child{
+    padding-right: 10px;
+  }
+  div:nth-child(2){
+    flex-grow: 1;
+    text-align: left;
+    position: relative;
+    input{
+      height: $cell_height;
+      width: 100%;
+      border: 0;
+      padding-right: 20px;
+      box-sizing:border-box;
+    }
+  }
+  div.close_box{
+    position: absolute;
+    top:50%;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    margin-top: -7.5px;
+  }
+  select{
+    border: 0;
+    width: 100%;
+    height: $cell_height;
+    background-color: transparent;
+  }
+}
+p.info{font-size: 14px;padding: 0 $left_right;color: #999999}
