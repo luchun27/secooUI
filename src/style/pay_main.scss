@@ -1,0 +1,160 @@
+@import "lib-mixins-wap.scss";
+$DevH:750;
+.line-color{
+    background:url(http://mpic.secooimg.com/images/2016/09/22/line_color_05.jpg) repeat-x;
+    width:100%;
+    @include height(4rem);
+    @include backgroundSize(88rem,4rem);
+}
+.mt20{
+  @include mt(20rem);
+}
+.main-page-view{
+  width:100%;
+}
+.address-section{
+  @include height(195rem);
+  .info{
+    text-align:left;
+    @include mt(20rem);
+  }
+}
+.ziti-section{
+  @include height(160rem);
+  .info{
+    text-align:left;
+    @include mt(20rem);
+  }
+}
+.ziti-add-section{
+  @include height(160rem);
+  .info{
+    text-align:center;
+    div{
+      @include convertRem_W_H(82rem,78rem);
+      margin:0 auto;
+      @include mb(10rem);
+      img{
+        @extend %max;
+      }
+    }
+  }
+}
+.address-add-section{
+  @include height(195rem);
+  .info{
+    text-align:center;
+    div{
+      @include convertRem_W_H(90rem,107rem);
+      margin:0 auto;
+      @include mb(10rem);
+      img{
+        @extend %max;
+      }
+    }
+  }
+}
+.footer-section{
+  @include convertRem_W_H(750rem,110rem);
+  background:#fff;
+  .footer-section-fixed{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    background:#fff;
+    left:0;
+    bottom:0;
+    @include convertRem_W_H(750rem,110rem);
+    z-index:10;
+  }
+  .pay-amount{
+    @include fontSize(32rem);
+    color: #1A191E;
+    @include ml(36rem);
+  }
+  .pref-amount{
+    @include fontSize(24rem);
+    color:#bbb;
+    @include ml(36rem);
+    @include mt(10rem);
+  }
+}
+#submit-order-btn{
+  @include convertRem_W_H(290rem,90rem);
+  @extend %center;
+  color:#fff;
+  @include fontSize(30rem);
+  background: #1A191E;
+  @include borderRadius(2rem);
+  @include mr(10rem);
+}
+.cell .phone-amount{
+  color:#bbb;
+  @include mr(20rem);
+  text-decoration: line-through;
+}
+.pro-section{
+  position:relative;
+  flex-direction: column;
+  display:flex;
+  justify-content:center;
+  -webkit-box-sizing:border-box;
+  @include convertRem_W_H(750rem,223rem);
+  background:#fff;
+  padding: 0 0.8rem;
+  overflow:hidden;
+  .pro-info-first{
+    display:-webkit-box;
+    width:100%;
+  }
+  .info-box{
+    -webkit-box-flex:1;
+    display:flex;
+    @include ml(20rem);
+    justify-content:space-between;
+    flex-direction: column;
+  }
+  .info-icon{
+    width: 70px;
+    height: 70px;
+    background:#ccc;
+  }
+  .info-title{
+    color:#1A191E;
+    font-size:14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .info-mixin{
+    color:#999;
+    font-size:13px;
+    @include mt(10rem);
+  }
+  .info-wrap{
+    display:flex;
+    justify-content:space-between;
+  }
+  .info-special{
+    font-size:13px;
+    color:#999;
+  }
+  .info-amount{
+    font-size:14px;
+    color:#1A191E;
+  }
+  .info-gift{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .pro-info-second{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:#999;
+    width:100%;
+    @include mt(20rem);
+  }
+}
