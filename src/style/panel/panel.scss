@@ -2,6 +2,10 @@
 @import "../base/libs/secoo_panel";
 @import "../icon/secoo_icon_font";
 a{color: $cell_font_color}
+.red{color: $global_color_font_2;}
+.black{color: $cell_font_color}
+.bold{font-weight: 500;}
+// 按钮组合基类
 .cell{
   overflow: hidden;
   font-size: $cell_font;
@@ -18,11 +22,14 @@ a{color: $cell_font_color}
   %icon{width:$cell_min_icon; height: $cell_min_icon;}
   p{
       @extend %icon;
+      background: url("http://mpic.secooimg.com/images/2016/09/22/payListIcon.png") no-repeat;
+      background-size: $cell_min_icon;
       img{
         @extend %icon;
       }
   }
   .info{
+    font-size: $cell_font_2;
     text-align: right;
     color: $cell_font_color2;
   }
@@ -30,6 +37,7 @@ a{color: $cell_font_color}
     color: $cell_font_color3;
   }
   .red{
+      font-size: $cell_font_3;
       background-color: $global_color_background;
       color: $global_color_font;
       flex-grow: inherit;
@@ -66,6 +74,7 @@ a.cell{
   input,select{
     -webkit-tap-highlight-color:rgba(0,0,0,0);
     outline:none;
+    color: $cell_font_color2;
   }
   div{
     flex-grow: inherit;
@@ -87,11 +96,13 @@ a.cell{
   }
   div.close_box{
     position: absolute;
-    top:50%;
+    top:0;
     right: 0;
-    height: 15px;
-    width: 15px;
-    margin-top: -7.5px;
+    height: 100%;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
   select{
     border: 0;
@@ -100,4 +111,66 @@ a.cell{
     background-color: transparent;
   }
 }
+//信息列表
+.cell.content{
+  height: $cell_height_3;
+  color: $cell_font_color2;
+  font-size:$cell_font_2;
+  &.header{
+    font-size: $cell_font;
+    height: $cell_height_2;
+    div{
+      @extend .bold;@extend .black;
+    }
+  }
+}
+//单行特殊提示
+.cell.tips{
+  font-size: $cell_font_2;
+}
+
+//图片list
+.img_box{
+  width: 100%;overflow: hidden;position: relative;
+  .float_div{
+    width:$left_right;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #ffffff;
+    z-index: 2;
+    &.more{
+      left: auto;
+      right: 0;
+      width: $cell_more_width;
+      background:  linear-gradient(left, rgba(255, 255, 255, 0.80),#FFFFFF);
+
+    }
+  }
+  .more{
+    display: flex;
+    box-sizing: border-box;
+    padding-right:$left_right;
+    align-items: center;
+    justify-content:flex-end;
+    color: $cell_font_color4;
+  }
+  .cell.img_list{
+    height: $cell_height_4;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    img{
+      width: $global_min_img;
+      height: $global_min_img;
+      flex-shrink:0;
+      margin-right: $global_min_img_mg;
+    }
+
+  }
+}
+
+
+
 p.info{font-size: 14px;padding: 0 $left_right;color: #999999}
