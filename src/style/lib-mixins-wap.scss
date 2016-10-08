@@ -111,6 +111,9 @@
 @mixin lineHeight($arg){
   line-height:$arg/2/18.75;
 }
+@mixin textIndent($arg){
+  text-indent:$arg/2/18.75;
+}
 %max{
   width:100%;
   height:100%;

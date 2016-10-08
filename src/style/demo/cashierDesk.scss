@@ -1,0 +1,65 @@
+@import "../lib-mixins-wap";
+$DevH:750;
+.mt20{
+  @include mt(20rem);
+}
+div.info.cashier-zero{
+  color:#E93B39;
+}
+.cashier-first{
+  span{
+    color:#999;
+    font-size:12px;
+  }
+}
+p.zhb-icon{
+  background-position-y:-27px;
+}
+p.cooTicket-icon{
+  background-position-y:-54px;
+}
+p.bank-icon{
+  background-position-y:-108px;
+}
+p.remit-icon{
+  background-position-y:-135px;
+}
+p.dis-cooTicket-icon{
+  background-position-y:-81px;
+}
+.cashier-second{
+  display:flex;
+  span{
+    color:#E93B39;
+    font-size:12px;
+    @extend %center;
+    @include mr(26rem);
+  }
+}
+.cashier-third{
+  span{
+    color:#ddd;
+  }
+}
+.footer-cashierDesk{
+  @include convertRem_W_H(750rem,187rem);
+  @include padding(16rem,16rem,16rem,16rem);
+  -webkit-box-sizing:border-box;
+  background:#fff;
+  position:fixed;
+  left:0;
+  bottom:0;
+  .cashierDesk-timer{
+    @include height(66rem);
+    @extend %center;
+    span{
+      @include convertRem_W_H(30rem,30rem);
+      background:#ccc;
+      @include mr(20rem);
+    }
+    div{
+      font-size:15px;
+      color:#1A191E;
+    }
+  }
+}
