@@ -1,6 +1,6 @@
 //顶部导航
 require('styles/panel/panel.scss');
-//顶部导航
+
 require('styles/tap_bars/tap.scss');
 //按钮
 require('styles/btn/btn.scss');
@@ -42,16 +42,12 @@ function relReady(){
         e.preventDefault();
     });
     // 自提联系人
-    $(".ziti-section,.ziti-add-section").on("tap",function(){
+    $(".ziti-section,.ziti-add-section").on("click",function(){
         $(".input-pops,.ziti-input").addClass("selected").find("input").first().focus();
     });
     // 身份证
-    $(".idCard_ref").on("tap",function(){
+    $(".idCard_ref").on("click",function(){
         $(".input-pops,.idCard_input").addClass("selected").find("input").first().focus();
-    });
-    // 激活优惠券
-    $("#ticket-page-view header .more").on("tap",function(){
-        $(".input-pops,.ticket-input").addClass("selected").find("input").first().focus();
     });
     // 关闭
     $(".input-pops .left-area,.input-pops").on("tap",function(){
@@ -76,15 +72,6 @@ function relReady(){
             $("#receipt-page-view .company-input").toggleClass("selected",dThis.next().hasClass("company-input"));
         }
     });
-    // 优惠券列表选择
-    $("#ticket-page-view .ticket-item").on("tap",function(){
-        var dThis = $(this),
-            cur = dThis.find(".select-mixin-item");
-        if(!cur.hasClass("secoo_icon_xuanzhong_red")){
-            cur.addClass("secoo_icon_xuanzhong_red").removeClass("secoo_icon_weixuan");
-            $("#ticket-page-view .ticket-item").not(dThis).find(".select-mixin-item").removeClass("secoo_icon_xuanzhong_red").addClass("secoo_icon_weixuan");
-        }
-    }); 
 
     $.ajax();
     // headers:{"appId":appId,"appKey":appKey,"Content-Type":"text/plain;charset=UTF-8"},
