@@ -1,0 +1,126 @@
+//不同的方法名字
+@mixin convertRem_W_H_640($w,$h){
+  width: $w/2/16rem;
+  height: $h/2/16rem;
+}
+@mixin convertRem_W_H_750($w,$h){
+    width: $w/2/18.75rem;
+    height: $h/2/18.75rem;
+}
+@mixin convertRem_W_H_1242($w,$h){
+    width: $w/3/20.7rem;
+    height: $h/3/20.7rem;
+}
+//通过$DevH变量判断 设置宽度rem
+
+@mixin convertRem_W_H($w,$h){
+  @if $DevH == 640{
+    width: $w/2/16rem;
+    height: $h/2/16rem;
+  }
+  @if $DevH == 750{
+    width: $w/2/18.75;
+    height: $h/2/18.75;
+  }
+  @if $DevH == 1242{
+    width: $w/3/20.7rem;
+    height: $h/3/20.7rem;
+  }
+}
+//行高设置
+@mixin lineheight_640($h){
+  line-height: $h/2/16rem;
+}
+@mixin lineheight_750($h){
+  line-height: $h/2/18.75rem;
+}
+@mixin lineheight_1242($h){
+  line-height: $h/3/20.7rem;
+}
+//高度处理
+@mixin mixin_x($arg){
+  @if $DevH == 640{
+    $vl:$arg/2/16rem;
+  }
+  @if $DevH == 750{
+    $vl:$arg/2/18.75rem;
+  }
+  @if $DevH == 1242{
+    $vl:$arg/3/20.7rem;
+  }
+}
+
+// sass定义
+@mixin backgroundSize($w,$h){
+  background-size:$w/2/18.75 $h/2/18.75;
+}
+@mixin fontSize($arg){
+  font-size:$arg/2/18.75;
+}
+@mixin ml($arg){
+  margin-left:$arg/2/18.75;
+}
+@mixin mr($arg){
+  margin-right:$arg/2/18.75;
+}
+@mixin mt($arg){
+  margin-top:$arg/2/18.75;
+}
+@mixin mb($arg){
+  margin-bottom:$arg/2/18.75;
+}
+@mixin margin($arg...){
+  margin:nth($arg,1)/2/18.75 nth($arg,2)/2/18.75 nth($arg,3)/2/18.75 nth($arg,4)/2/18.75;
+}
+@mixin pl($arg){
+  padding-left:$arg/2/18.75;
+}
+@mixin pr($arg){
+  padding-right:$arg/2/18.75;
+}
+@mixin pt($arg){
+  padding-top:$arg/2/18.75;
+}
+@mixin pb($arg){
+  padding-bottom:$arg/2/18.75;
+}
+@mixin padding($arg...){
+  padding:nth($arg,1)/2/18.75 nth($arg,2)/2/18.75 nth($arg,3)/2/18.75 nth($arg,4)/2/18.75;
+}
+@mixin left($arg){
+  left:$arg/2/18.75;
+}
+@mixin top($arg){
+  top:$arg/2/18.75;
+}
+@mixin bottom($arg){
+  bottom:$arg/2/18.75;
+}
+@mixin right($arg){
+  right:$arg/2/18.75;
+}
+@mixin width($arg){
+  width:$arg/2/18.75;
+}
+@mixin height($arg){
+  height:$arg/2/18.75;
+}
+@mixin borderRadius($arg){
+  border-radius:$arg/2/18.75;
+}
+@mixin lineHeight($arg){
+  line-height:$arg/2/18.75;
+}
+@mixin textIndent($arg){
+  text-indent:$arg/2/18.75;
+}
+%max{
+  width:100%;
+  height:100%;
+}
+%center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
