@@ -353,11 +353,14 @@ ul{
     @include height(200rem);
     display:flex;
     align-items:center;
+    position: relative;
+    overflow: hidden;
   }
   .pro-gift-list{
     @include pt(10rem);
     @include pb(30rem);
     position:relative;
+    overflow:hidden;
   }
   .pro-info-second{
     @include pt(20rem);
