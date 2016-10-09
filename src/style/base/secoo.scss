@@ -46,3 +46,5 @@ body{@extend .no_select; background: #f5f5f5}
 .in_pr{padding-right: $global_min_padding;}
 .out_margin_top{margin-top: $global_min_margin}
 .out_margin_bottom{margin-bottom: $global_min_margin}
+
+.img_box .hide,.cell .hide,.hide{display: none}
