@@ -65,6 +65,20 @@ ul{
   overflow-y:auto;
   -webkit-overflow-scrolling: touch;
 }
+.delivery-area{
+  >div{
+    width:50%;
+  }
+  >.bold{
+    @include pr(36rem);
+  }
+  .info{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+}
 .page-btn-wrap{
   background:#fff;
   @include padding(15rem,16rem,15rem,16rem);
@@ -157,9 +171,9 @@ ul{
   display:flex;
   justify-content:center;
   -webkit-box-sizing:border-box;
-  @include convertRem_W_H(750rem,270rem);
+  width:100%;
   background:#fff;
-  padding: 0 0.8rem;
+  padding: 0.8rem;
   overflow:hidden;
 }
 .pro-info-first{
@@ -353,11 +367,14 @@ ul{
     @include height(200rem);
     display:flex;
     align-items:center;
+    position: relative;
+    overflow: hidden;
   }
   .pro-gift-list{
     @include pt(10rem);
     @include pb(30rem);
     position:relative;
+    overflow:hidden;
   }
   .pro-info-second{
     @include pt(20rem);
@@ -474,6 +491,14 @@ ul{
     @include convertRem_W_H(27rem,27rem);
     background:#ccc;
     @include mr(10rem);
+    position:relative;
+    &::before{
+      content:"";
+      position:absolute;
+      left:-1rem;
+      top:-1rem;
+      @include convertRem_W_H(100rem,100rem);
+    }
   }
   .info-des{
     font-size:13px;
@@ -484,6 +509,7 @@ ul{
 }
 // 地址管理
 .ad-control{
+  overflow:hidden;
   background:#fff;
   position:relative;
   display:-webkit-box;
