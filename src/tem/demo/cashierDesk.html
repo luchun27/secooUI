@@ -6,81 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body class="notLazyload">
-<header class="header">
-    <div class="content"><div>收银台</div></div>
-</header>
-<div class="main-page-view page-view mt20 selected">
-    <div class="cell">
-        <div class="bold">订单金额</div>
-        <div class="info cashier-zero">¥800.00</div>
+    <header class="header">
+        <div class="content"><div>收银台</div></div>
+    </header>
+    <div class="main-page-view page-view mt20 selected">
+        <div class="cell">
+            <div class="bold">订单金额</div>
+            <div class="info cashier-zero"></div>
+        </div>
+        <div class="mt20" id="paymethodSection">
+            <!--<div class="paytype-item cell clell_border">-->
+                <!--<p class="in_pr remit-icon"></p>-->
+                <!--<div class="cashier-first">-->
+                    <!--<div class="bold">银行汇款</div>-->
+                    <!--<span>推荐5w以上订单使用</span>-->
+                <!--</div>-->
+                <!--<span class="secoo_icon_weixuan">-->
+                    <!--<span class="path1"></span>-->
+                    <!--<span class="path2"></span>-->
+                <!--</span>-->
+            <!--</div>-->
+        </div>
+        <div class="footer-cashierDesk">
+            <div class="cashierDesk-timer">
+                <span class="secoo_icon_time">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                </span>
+                <div></div>
+            </div>
+            <a id="goPayBtn" href="javascript:;" class="secoo_btn secoo_btn_default">去支付</a>
+        </div>
     </div>
-    <a class="cell clell_border mt20" href="javascript:;">
-        <p class="in_pr"></p>
-        <div class="cashier-first">
-            <div class="bold">微信支付</div>
-            <span>绑定银行卡最低限额1.5w</span>
-        </div>
-        <span class="secoo_icon_xuanzhong">
-            <span class="path1"></span>
-            <span class="path2"></span>
-        </span>
-    </a>
-    <a class="cell clell_border" href="javascript:;">
-        <p class="in_pr zhb-icon"></p>
-        <div class="cashier-first">
-            <div class="bold">支付宝支付</div>
-            <span>绑定银行卡最低限额2w</span>
-        </div>
-        <span class="secoo_icon_weixuan">
-            <span class="path1"></span>
-            <span class="path2"></span>
-        </span>
-    </a>
-    <a class="cell clell_border" href="javascript:;">
-        <p class="in_pr cooTicket-icon"></p>
-        <div class="cashier-second">
-            <div class="bold">库支票</div>
-            <span>可用额度¥8000</span>
-        </div>
-        <span class="secoo_icon_weixuan">
-            <span class="path1"></span>
-            <span class="path2"></span>
-        </span>
-    </a>
-    <a class="cell clell_border" href="javascript:;">
-        <p class="in_pr bank-icon"></p>
-        <div class="bold">手机银行</div>
-        <span class="secoo_icon_weixuan">
-            <span class="path1"></span>
-            <span class="path2"></span>
-        </span>
-    </a>
-    <a class="cell clell_border" href="javascript:;">
-        <p class="in_pr remit-icon"></p>
-        <div class="cashier-first">
-            <div class="bold">银行汇款</div>
-            <span>推荐5w以上订单使用</span>
-        </div>
-        <span class="secoo_icon_weixuan">
-            <span class="path1"></span>
-            <span class="path2"></span>
-        </span>
-    </a>
-    <a class="cell clell_border mt20" href="javascript:;">
-        <p class="in_pr dis-cooTicket-icon"></p>
-        <div class="cashier-second cashier-third">
-            <div class="bold">库支票</div>
-            <span>可用额度¥8000</span>
-        </div>
-        <span class="secoo_icon_weixuan">
-            <span class="path1"></span>
-            <span class="path2"></span>
-        </span>
-    </a>
-    <div class="footer-cashierDesk">
-        <div class="cashierDesk-timer"><span></span><div>60:59</div></div>
-        <a id="cashierDesk-confirm-btn" href="javascript:;" class="secoo_btn secoo_btn_default">去支付</a>
-    </div>
-</div>
+    <!--#config timefmt="%Y/%m/%d %H:%M:%S" -->
+    <script type="text/javascript" src="http://mstatic.secooimg.com/js/zepto.min.js?t=20151120"></script>
+    <script type="text/javascript" src="http://mstatic.secooimg.com/js/wap/comm.js"></script>
+    <script type="text/javascript" src="http://mstatic.secooimg.com/js/timeAction.js?t=20151115"></script>
 </body>
 </html>

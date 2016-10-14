@@ -23,58 +23,9 @@ $hosts:"http://mstatic.secooimg.com/js/fonts";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.secoo_icon_search:before {//搜索
-  content: "\e900";
-}
-.secoo_icon_more:before {//...
-  content: "\e901";
-}
-.secoo_icon_fenlei:before {//分类
-  content: "\e902";
-}
-.secoo_icon_back:before {//返回
-  content: "\e903";
-}
-.secoo_icon_logo:before {//寺库logo
-  content: "\e904";
-}
-//关闭
-
-.secoo_icon_delete .path1:before {
-  content: "\e905";
-  color: rgb(221, 221, 221);
-}
-.secoo_icon_delete .path2:before {
-  position: absolute;
-  top:0;
-  left: 0;
-  content: "\e906";
-  color: rgb(255, 255, 255);
-}
-.secoo_icon_delete .path3:before {
-  position: absolute;
-  top:0;
-  left: 0;
-  content: "\e907";
-  color: rgb(255, 255, 255);
-}
-
-
-.secoo_icon_xuanzhong .path1:before {
-  position: absolute;
-  top:0;
-  left: 0;
-  content: "\e914";
-  color: rgb(26, 25, 30);
-}
-.secoo_icon_xuanzhong .path2:before {
-  position: absolute;
-  top:0;
-  left: 0;
-  content: "\e915";
-  color: rgb(255, 255, 255);
-}
+/*
+   红色选中按钮
+*/
 .secoo_icon_xuanzhong_red .path1:before {
   position: absolute;
   top:0;
@@ -89,22 +40,73 @@ $hosts:"http://mstatic.secooimg.com/js/fonts";
   content: "\e915";
   color: rgb(255, 255, 255);
 }
+/*------------------------*/
+
+
+
+
+.secoo_icon_time .path1:before {
+  content: "\e904";
+  color: rgb(221, 221, 221);
+}
+.secoo_icon_time .path2:before {
+  content: "\e91f";
+  position: absolute;   top:0;   left: 0;
+  color: rgb(26, 25, 30);
+}
+.secoo_icon_time .path3:before {
+  content: "\e920";
+  position: absolute;   top:0;   left: 0;
+  color: rgb(26, 25, 30);
+}
+.secoo_icon_shanchu:before {
+  content: "\e918";
+}
+.secoo_icon_bianji:before {
+  content: "\e919";
+}
+.secoo_icon_zhankai:before {
+  content: "\e91a";
+}
+.secoo_icon_guanbi:before {
+  content: "\e929";
+}
+.secoo_icon_Artboard-3 .path1:before {
+  content: "\e91c";
+  color: rgb(221, 221, 221);
+}
+.secoo_icon_Artboard-3 .path2:before {
+  content: "\e91d";
+  position: absolute;   top:0;   left: 0;
+  color: rgb(255, 255, 255);
+}
+.secoo_icon_Artboard-3 .path3:before {
+  content: "\e91e";
+  position: absolute;   top:0;   left: 0;
+  color: rgb(255, 255, 255);
+}
+.secoo_icon_bukexuan:before {
+  content: "\e91b";
+}
+.secoo_icon_xuanzhong .path1:before {
+  content: "\e914";
+  color: rgb(26, 25, 30);
+}
+.secoo_icon_xuanzhong .path2:before {
+  content: "\e915";
+  position: absolute;   top:0;   left: 0;
+  color: rgb(255, 255, 255);
+}
 .secoo_icon_weixuan .path1:before {
   content: "\e916";
   color: rgb(238, 238, 238);
-  position: absolute;
-  top:0;
-  left: 0;
 }
 .secoo_icon_weixuan .path2:before {
   content: "\e917";
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
-  position: absolute;
-  top:0;
-  left: 0;
 }
 .secoo_icon_next:before {
-  font-size: 14px;
   content: "\e913";
 }
 .secoo_icon_loading .path1:before {
@@ -114,62 +116,90 @@ $hosts:"http://mstatic.secooimg.com/js/fonts";
 }
 .secoo_icon_loading .path2:before {
   content: "\e909";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.5;
 }
 .secoo_icon_loading .path3:before {
   content: "\e90a";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.45;
 }
 .secoo_icon_loading .path4:before {
   content: "\e90b";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.4;
 }
 .secoo_icon_loading .path5:before {
   content: "\e90c";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.35;
 }
 .secoo_icon_loading .path6:before {
   content: "\e90d";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.3;
 }
 .secoo_icon_loading .path7:before {
   content: "\e90e";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.25;
 }
 .secoo_icon_loading .path8:before {
   content: "\e90f";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.2;
 }
 .secoo_icon_loading .path9:before {
   content: "\e910";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.15;
 }
 .secoo_icon_loading .path10:before {
   content: "\e911";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.1;
 }
 .secoo_icon_loading .path11:before {
   content: "\e912";
-  margin-left: -1em;
+  position: absolute;   top:0;   left: 0;
   color: rgb(255, 255, 255);
   opacity: 0.0500;
 }
-
+.secoo_icon_logo:before {
+  content: "\e921";
+}
+.secoo_icon_delete .path1:before {
+  content: "\e905";
+  color: rgb(221, 221, 221);
+}
+.secoo_icon_delete .path2:before {
+  content: "\e906";
+  position: absolute;   top:0;   left: 0;
+  color: rgb(255, 255, 255);
+}
+.secoo_icon_delete .path3:before {
+  content: "\e907";
+  position: absolute;   top:0;   left: 0;
+  color: rgb(255, 255, 255);
+}
+.secoo_icon_search:before {
+  content: "\e900";
+}
+.secoo_icon_more:before {
+  content: "\e901";
+}
+.secoo_icon_fenlei:before {
+  content: "\e902";
+}
+.secoo_icon_back:before {
+  content: "\e903";
+}

@@ -42,7 +42,8 @@ p.dis-cooTicket-icon{
   }
 }
 .footer-cashierDesk{
-  @include convertRem_W_H(750rem,187rem);
+  width:100%;
+  @include height(187rem);
   @include padding(16rem,16rem,16rem,16rem);
   -webkit-box-sizing:border-box;
   background:#fff;
@@ -52,14 +53,15 @@ p.dis-cooTicket-icon{
   .cashierDesk-timer{
     @include height(66rem);
     @extend %center;
-    span{
-      @include convertRem_W_H(30rem,30rem);
-      background:#ccc;
+    > span{
       @include mr(20rem);
     }
     div{
       font-size:15px;
       color:#1A191E;
+    }
+    >*{
+      display:none;
     }
   }
 }
