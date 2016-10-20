@@ -17,24 +17,10 @@
             </header>
             <div class="page-content">
                 <div class="select-address-ls">
-                    <ul>
-                        <!--<li>-->
-                            <!--<div class="li-inner">-->
-                                <!--<div class="ad-info">-->
-                                    <!--<div class="info-ref">-->
-                                        <!--<div>张三</div><em>18656421431</em><span>默认</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="info-des">北京市东城区朝内大街银河SOHOC座15楼1502室寺库公司前台1502室寺库公司前台</div>-->
-                                <!--</div>-->
-                                <!--<div class="ad-line"></div>-->
-                                <!--<div class="ad-edit-btn"></div>-->
-                            <!--</div>-->
-                            <!--<div class="line-color"></div>-->
-                        <!--</li>-->
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
-            <div class="page-btn-wrap mt20">
+            <div class="page-btn-wrap">
                 <a href="javascript:;" class="secoo_btn secoo_btn_default" id="add_address_page">添加收货地址</a>
             </div>
         </div>
@@ -54,9 +40,9 @@
                             <div class="li-inner">
                                 <div class="ad-info">
                                     <div class="info-ref">
-                                        <div>张三</div><em>18656421431</em>
+                                        <div></div><em></em>
                                     </div>
-                                    <div class="info-des">北京市东城区朝内大街银河SOHOC座15楼1502室寺库公司前台1502室寺库公司前台</div>
+                                    <div class="info-des"></div>
                                 </div>
                             </div>
                             <div class="ad-control clell_border">
@@ -83,9 +69,9 @@
                             <div class="li-inner">
                                 <div class="ad-info">
                                     <div class="info-ref">
-                                        <div>张三</div><em>18656421431</em>
+                                        <div></div><em></em>
                                     </div>
-                                    <div class="info-des">北京市东城区朝内大街银河SOHOC座15楼1502室寺库公司前台1502室寺库公司前台</div>
+                                    <div class="info-des"></div>
                                 </div>
                             </div>
                             <div class="ad-control clell_border">
@@ -124,14 +110,14 @@
                     </div>
                     <div class="content"><div>{{title}}</div></div>
                     <div class="more">
-                        <div><span>删除</span></div>
+                        {{ if del == true }}<div><span>删除</span></div>{{/if}}
                     </div>
                 </header>
                 <div class="page-content mt20">
                     <div class="cell form">
                         <div>收件人:</div>
                         <div class="info">
-                            <input name="addressee" type="text" value="">
+                            <input name="addressee" maxlen="16" type="text" value="">
                             <div class="close_box">
                             <span class="secoo_icon_delete">
                                 <span class="path1"></span>
@@ -144,7 +130,7 @@
                     <div class="cell form clell_border">
                         <div>联系方式:</div>
                         <div class="info">
-                            <input name="contact" type="text" value="">
+                            <input name="contact" type="tel" value="" maxlen="11">
                             <div class="close_box">
                             <span class="secoo_icon_delete">
                                 <span class="path1"></span>
@@ -187,7 +173,7 @@
                     <div class="cell form clell_border">
                         <div>详细地址:</div>
                         <div class="info">
-                            <input name="address" type="text" value="">
+                            <input name="address" type="text" maxlen="40" value="">
                             <div class="close_box">
                             <span class="secoo_icon_delete">
                                 <span class="path1"></span>
@@ -197,18 +183,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ad-control clell_border mt40">
+                    <div class="ad-control mt20">
+                        {{if isDefault == true}}
+                        <div class="control-default dis-btn selected">
+                            <span class="secoo_icon_xuanzhong_red">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </span>
+                            <div>默认地址</div>
+                        </div>
+                        {{else}}
                         <div class="control-default">
-                            <span class="secoo_icon_xuanzhong">
+                            <span class="secoo_icon_weixuan">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
                             </span>
                             <div>设为默认地址</div>
                         </div>
+                        {{/if}}
                     </div>
                 </div>
                 <div class="page-btn-wrap mt20">
-                    <a href="javascript:;" class="secoo_btn secoo_btn_default">保存并使用</a>
+                    <a href="javascript:;" class="secoo_btn secoo_btn_default disabled">保存并使用</a>
                 </div>
             </div>
         </script>

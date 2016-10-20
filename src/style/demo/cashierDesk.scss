@@ -1,7 +1,23 @@
 @import "../lib-mixins-wap";
+//顶部导航
+@import '../panel/panel.scss';
+
+@import '../tap_bars/tap.scss';
+//按钮
+@import '../btn/btn.scss';
 $DevH:750;
 .mt20{
   @include mt(20rem);
+}
+.paytype-item{
+  .pay-icon{
+    width:22px;
+    height:22px;
+    margin-right:8px;
+    img{
+      @extend %max;
+    }
+  }
 }
 div.info.cashier-zero{
   color:#E93B39;
@@ -11,21 +27,6 @@ div.info.cashier-zero{
     color:#999;
     font-size:12px;
   }
-}
-p.zhb-icon{
-  background-position-y:-27px;
-}
-p.cooTicket-icon{
-  background-position-y:-54px;
-}
-p.bank-icon{
-  background-position-y:-108px;
-}
-p.remit-icon{
-  background-position-y:-135px;
-}
-p.dis-cooTicket-icon{
-  background-position-y:-81px;
 }
 .cashier-second{
   display:flex;
@@ -44,14 +45,14 @@ p.dis-cooTicket-icon{
 .footer-cashierDesk{
   width:100%;
   @include height(187rem);
-  @include padding(16rem,16rem,16rem,16rem);
+  @include padding(0rem,16rem,16rem,16rem);
   -webkit-box-sizing:border-box;
   background:#fff;
   position:fixed;
   left:0;
   bottom:0;
   .cashierDesk-timer{
-    @include height(66rem);
+    @include height(82rem);
     @extend %center;
     > span{
       @include mr(20rem);

@@ -1,9 +1,3 @@
-//顶部导航
-require('styles/panel/panel.scss');
-//顶部导航
-require('styles/tap_bars/tap.scss');
-//按钮
-require('styles/btn/btn.scss');
 require('styles/demo/cashierDesk.scss');
 var payment = {
     init: function () {
@@ -22,30 +16,41 @@ var payment = {
         this.areaType = areaType;
 
         //获取在线支付方式 接口
-        this.setPayMethod(order_amount);
+        this.setPayMethod(orderId);
 
         $('#goPayBtn').on('click', function () {
-            var payname = that.payname;
-            if($(this).attr("isClick") == "true"){
+            var payname = that.payname,
+                dThis = $(this);
+            if(dThis.attr("isClick") == "true" || dThis.text() == "正在提交..."){
                 return ;
             }
-            $(this).attr("isClick",true);
-            switch (payname) {
-                case 'alipay':
-                    that.AliPayAction();
-                    break;
-                case 'weixinpay':
-                    that.weiXinPayAction();
-                    break;
-                case 'onlinepay':
-                    that.validateFirstSooPay_Pay_Type01();
-                    break;
-                case 'iouspay' :
-                    that.IousPayAction(orderId,order_amount);
-                    break;
-                // case 'friendspay' :
-                //     that.friendsPayAction(orderId,order_amount);
-                //     break;
+            dThis.attr("isClick",true);
+            if($(this).attr("timeover") == 1){
+                window.location.href = "http://m.secoo.com/orderDetail.html?orderId="+orderId;
+            }else{
+                switch (payname) {
+                    case 'alipay':
+                        that.AliPayAction();
+                        break;
+                    case 'weixinpay':
+                        that.weiXinPayAction();
+                        break;
+                    case 'onlinepay':
+                        that.validateFirstSooPay_Pay_Type01();
+                        break;
+                    case 'iouspay' :
+                        that.IousPayAction(orderId,order_amount);
+                        break;
+                    case 'bankRemittance':
+                        window.location.href = "http://m.secoo.com/appActivity/bankRemittance.shtml?pageid=1318&orderId="+orderId+"&price="+order_amount;
+                        break;
+                    // case 'friendspay' :
+                    //     that.friendsPayAction(orderId,order_amount);
+                    //     break;
+                }
+                setTimeout(function(){
+                    dThis.attr("isClick",false);
+                },5000);
             }
         });
         // 修改支付方式
@@ -102,7 +107,7 @@ var payment = {
             success : function(result) {
                 $(this).attr("isClick",false);
                 window.localStorage.setItem("weixinpay_data", JSON.stringify(result));
-                window.location.href = 'weixin/weixinpay.html?showwxpaytitle=1&frompage=postordersuccess&orderid=' + getQueryString('orderId');
+                window.location.href = 'http://m.secoo.com/weixin/weixinpay.html?showwxpaytitle=1&frompage=postordersuccess&orderid=' + getQueryString('orderId');
             },
             error : function() {
                 $("#goPayBtn").text("去支付");
@@ -118,6 +123,7 @@ var payment = {
         $("#goPayBtn").text("正在提交...");
         $(this).attr("isClick",false);
         window.location.href = "http://pay.secoo.com/b2c/alipay/alipayWapPay.jsp?orderid=" + getQueryString('orderId') + "&upk=" + getCookie('Sid');
+        $("#goPayBtn").text("去支付");
     },
 
     /**
@@ -172,7 +178,7 @@ var payment = {
                     var userId = upk.split("|")[1];
 
                     window.localStorage.setItem("liandongyoushibangdingtype02_" + userId, JSON.stringify(result_data));
-                    window.location.href = "soopay.html?orderid=" + getQueryString('orderId') + "&totalordermoney=" + getQueryString('prodTotalPrice');;
+                    window.location.href = "http://m.secoo.com/soopay.html?orderid=" + getQueryString('orderId') + "&totalordermoney=" + getQueryString('prodTotalPrice');;
                 }
             },
             error : function() {
@@ -217,7 +223,6 @@ var payment = {
             }
         });
     },
-
     //微信好友代付
     friendsPayAction : function(orderId,order_amount){
         var orderImg = window.localStorage.getItem("orderImg");
@@ -248,32 +253,66 @@ var payment = {
             }
         });
     },
+    //判断是否微信
+    isWeiXin : function(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+            return true;
+        }else{
+            return false;
+        }
+    },
     /**
      * 获取在线支付方式
-     * @param  {Number} cardNo
+     * @param  {Number} orderId
      * @return {Object}
      */
-    setPayMethod : function(order_amount){
-        var urlS = "http://lr.secooimg.com/pay_ways",
-            dataJson = {platform_type:3,upk:getCookie("Sid"),isSettlement : 0,order_amount : order_amount},
-            payObj = {"1":"alipay","2" : "weixinpay", "3":"onlinepay","4":"iouspay","5":"applepay","6":"friendspay","10":"secoopay"};
+    setPayMethod : function(orderId){
+        var that = this,
+            urlS = "http://las.secoo.com/api/cart/order_finish",
+            dataJson = {c_platform_type:3,upk:getCookie("Sid"),size : 2,orderId : orderId,canApplePay:false,weixinSupport:that.isWeiXin()},
+            payObj = {"2":"bankRemittance","4" : "weixinpay","5":"alipay","6":"onlinepay","7":"iouspay"};
         $.ajax({
             type : "GET",
             dataType : "jsonp",
             url : urlS,
             data : dataJson,
             success : function(result) {
-                if(result.rp_result.recode == 0){
-                    var payWays = result.rp_result.payWays, html = "";
+                if(result.retCode == 0){
+                    // 倒计时
+                    var orderRemainingPayTimeNumber = Number(result.orderRemainingPayTime),
+                        timer_ele = $(".cashierDesk-timer").children(),
+                        mixinTimer  = setInterval(function(){
+                            var time = "00:00";
+                        if(orderRemainingPayTimeNumber <= 0){
+                            clearInterval(mixinTimer);
+                            $("#goPayBtn").attr("timeover",1);
+                        }else{
+                            var fTemp = parseInt(orderRemainingPayTimeNumber/60000),
+                                sTemp = (orderRemainingPayTimeNumber%60000)/1000;
+                            if(fTemp < 10){
+                                fTemp = "0"+fTemp;
+                            }
+                            if(sTemp < 10){
+                                sTemp = "0"+sTemp;
+                            }
+                            time = fTemp+":"+sTemp;
+                            orderRemainingPayTimeNumber -= 1000;
+                        }
+                        $(".cashierDesk-timer > div").html(time);
+                        timer_ele.show();
+                    },1000);
+                    var payWays = result.payWays, html = "";
                     for(var i = 0, len = payWays.length; i < len; i++){
+                        if(payWays[i].enable == 0 && payWays[i].id != 7) continue;
                         var btnClass = payWays[i].isDefault?"secoo_icon_weixuan":"secoo_icon_xuanzhong";
                         switch(payWays[i].id){
-                            case "1": // 支付宝支付
+                            case 2: // 银行汇款
                                 html += ['<div class="paytype-item cell clell_border" payname="'+payObj[payWays[i].id]+'">',
-                                    '<p class="in_pr zhb-icon"></p>',
+                                    '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
                                     '<div class="cashier-first">',
-                                    '<div class="bold">支付宝支付</div>',
-                                    '<span>'+payWays[i].payName+'</span>',
+                                    '<div class="bold">'+payWays[i].payName+'</div>',
+                                    '<span>'+payWays[i].desc+'</span>',
                                     '</div>',
                                     '<span class="'+btnClass+'">',
                                     '<span class="path1"></span>',
@@ -281,12 +320,12 @@ var payment = {
                                     '</span>',
                                     '</div>'].join("");
                                 break;
-                            case "2": // 微信支付
+                            case 4: // 微信支付
                                 html += ['<div class="paytype-item cell clell_border" payname="'+payObj[payWays[i].id]+'">',
-                                    '<p class="in_pr"></p>',
+                                    '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
                                     '<div class="cashier-first">',
-                                    '<div class="bold">微信支付</div>',
-                                    '<span>'+payWays[i].payName+'</span>',
+                                    '<div class="bold">'+payWays[i].payName+'</div>',
+                                    '<span>'+payWays[i].desc+'</span>',
                                     '</div>',
                                     '<span class="'+btnClass+'">',
                                     '<span class="path1"></span>',
@@ -294,23 +333,39 @@ var payment = {
                                     '</span>',
                                     '</div>'].join("");
                                 break;
-                            case "3": // 手机银行支付
+                            case 5: // 支付宝支付
                                 html += ['<div class="paytype-item cell clell_border" payname="'+payObj[payWays[i].id]+'">',
-                                    '<p class="in_pr bank-icon"></p>',
-                                    '<div class="bold">手机银行</div>',
+                                    '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
+                                    '<div class="cashier-first">',
+                                    '<div class="bold">'+payWays[i].payName+'</div>',
+                                    '<span>'+payWays[i].desc+'</span>',
+                                    '</div>',
                                     '<span class="'+btnClass+'">',
                                     '<span class="path1"></span>',
                                     '<span class="path2"></span>',
                                     '</span>',
                                     '</div>'].join("");
                                 break;
-                            case "4": // 库支票支付
+                            case 6: // 手机银行支付
+                                html += ['<div class="paytype-item cell clell_border" payname="'+payObj[payWays[i].id]+'">',
+                                    '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
+                                    '<div class="cashier-first">',
+                                    '<div class="bold">'+payWays[i].payName+'</div>',
+                                    '<span>'+(payWays[i].desc?payWays[i].desc:"")+'</span>',
+                                    '</div>',
+                                    '<span class="'+btnClass+'">',
+                                    '<span class="path1"></span>',
+                                    '<span class="path2"></span>',
+                                    '</span>',
+                                    '</div>'].join("");
+                                break;
+                            case 7: // 库支票支付
                                 if(payWays[i].enable == 1){
                                     html += ['<div class="paytype-item cell clell_border" payname="'+payObj[payWays[i].id]+'">',
-                                        '<p class="in_pr cooTicket-icon"></p>',
+                                        '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
                                         '<div class="cashier-second">',
-                                        '<div class="bold">库支票</div>',
-                                        '<span>'+payWays[i].payName+'</span>',
+                                        '<div class="bold">'+payWays[i].payName+'</div>',
+                                        '<span>'+payWays[i].subName+'</span>',
                                         '</div>',
                                         '<span class="'+btnClass+'">',
                                         '<span class="path1"></span>',
@@ -319,10 +374,10 @@ var payment = {
                                         '</div>'].join("");
                                 }else{
                                     html += ['<div class="paytype-item cell clell_border">',
-                                        '<p class="in_pr dis-cooTicket-icon"></p>',
+                                        '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
                                         '<div class="cashier-second cashier-third">',
-                                        '<div class="bold">库支票</div>',
-                                        '<span>'+payWays[i].payName+'</span>',
+                                        '<div class="bold">'+payWays[i].payName+'</div>',
+                                        '<span>'+payWays[i].subName+'</span>',
                                         '</div>',
                                         '<span class="secoo_icon_bukexuan">',
                                         '<span class="path1"></span>',
@@ -336,7 +391,7 @@ var payment = {
                     $("#paymethodSection").append(html);
                     payment.payname = $("#paymethodSection .secoo_icon_xuanzhong").closest(".paytype-item").attr("payname");
                 }else{
-                    alert(result.rp_result.errMsg);
+                    alert(result.retMsg);
                 }
             },
             error : function() {
@@ -347,35 +402,11 @@ var payment = {
 };
 $(function () {
     payment.init();
-
-    // 订单剩余时间处理
-    var orderId = getQueryString('orderId'),
-        currentDate = new Date("<!--#echo var='DATE_LOCAL' -->"),
-        endDate, orderTimer = JSON.parse(window.localStorage.getItem("orderTimer")) || {};
-    if(orderTimer[orderId]){
-        endDate = new Date(orderTimer[orderId]);
-    }else{
-        endDate = new Date(currentDate.getTime()+(60*60*1000));
-        orderTimer[orderId] = currentDate.getTime()+(60*60*1000);
-        window.localStorage.setItem("orderTimer",JSON.stringify(orderTimer));
-    }
-    if(orderId){
-        // 去支付倒计时1小时
-        new Countdown({
-            selector: ".cashierDesk-timer > div",
-            dateStart: currentDate,
-            dateEnd: endDate,
-            leadingZeros: true,
-            msgBefore: $(".cashierDesk-timer > div").html(),
-            msgAfter: "去支付",
-            msgPattern: '{minutes}:{seconds}'
-        });
-        $(".cashierDesk-timer").children().show();
-    }
     // 百度统计
-    // var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    // document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F0b244704c105fcdb4c38b56ba154d77b' type='text/javascript'%3E%3C/script%3E"));
-    // $('#goPayBtn').on('click', function () {
-    //     _hmt.push(['_trackEvent', 'payment', 'click', 'goPayAction']);
-    // });
+    var _hmt = _hmt || [];(function() {var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0b244704c105fcdb4c38b56ba154d77b";var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);})();
+    $('#goPayBtn').on('click', function () {
+        _hmt.push(['_trackEvent', 'payment', 'click', 'goPayAction']);
+    });
 });

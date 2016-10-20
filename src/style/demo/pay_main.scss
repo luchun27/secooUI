@@ -1,4 +1,10 @@
 @import "../lib-mixins-wap";
+//顶部导航
+@import '../panel/panel.scss';
+
+@import '../tap_bars/tap.scss';
+//按钮
+@import '../btn/btn.scss';
 $DevH:750;
 html,body{
   height:100%;
@@ -22,8 +28,11 @@ ul{
     outline:none;
     text-indent:1em;
     font-size:14px;
-    color:#bbb;
+    color:#000;
     -webkit-box-sizing:border-box;
+    &::-webkit-input-placeholder{
+      color:#bbb;
+    }
 }
 .mixin-border:before {
   content: ' ';
@@ -73,6 +82,7 @@ ul{
   -webkit-box-flex:1;
   overflow-y:auto;
   -webkit-overflow-scrolling: touch;
+  @include pb(20rem);
 }
 .delivery-area{
   >div{
@@ -94,13 +104,21 @@ ul{
 }
 
 .address-section{
-  @include height(195rem);
+  height:auto;
+  @include pt(28rem);
+  @include pb(28rem);
   .info{
     text-align:left;
     @include mt(20rem);
   }
   .user-address{
     @include lineHeight(36rem);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
   }
 }
 .ziti-section{
@@ -138,7 +156,29 @@ ul{
     }
   }
 }
+.box_shadow_show{
+  position:relative;
+  &::before{
+    content: "";
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 1);
+    display: block;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index:3;
+  }
+  >div{
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:4;
+  }
+}
 .footer-section{
+  position:relative;
   @include convertRem_W_H(750rem,110rem);
   background:#fff;
   .footer-section-fixed{
@@ -152,6 +192,7 @@ ul{
     @include fontSize(32rem);
     color: #1A191E;
     @include ml(36rem);
+    font-weight: 500;
   }
   .pref-amount{
     @include fontSize(24rem);
@@ -161,6 +202,9 @@ ul{
   }
 }
 #submit-order-btn{
+  .disabled{
+    background:#ddd;
+  }
   @include convertRem_W_H(290rem,90rem);
   @extend %center;
   color:#fff;
@@ -198,7 +242,6 @@ ul{
   .info-icon{
     width: 70px;
     height: 70px;
-    background:#ccc;
     img{
       @extend %max;
     }
@@ -367,7 +410,6 @@ ul{
 }
 // 商品详情列表
 .pro-detail-list{
-  background:#fff;
   &>div{
     padding:0 0.8rem;
   }
@@ -377,12 +419,14 @@ ul{
     align-items:center;
     position: relative;
     overflow: hidden;
+    background:#fff;
   }
   .pro-gift-list{
     @include pt(10rem);
     @include pb(30rem);
     position:relative;
     overflow:hidden;
+    background:#fff;
   }
   .pro-info-second{
     @include pt(20rem);
@@ -411,16 +455,28 @@ ul{
         &.selected{
           border-color:#1A191E;
         }
+        &:last-child{
+          margin-right:0;
+        }
         position:relative;
-        @include convertRem_W_H(142rem,50rem);
+        @include height(50rem);
         border:1px solid #ddd;
         @include borderRadius(4rem);
         @include mr(30rem);
+        @include pl(10rem);
+        @include pr(10rem);
         span{
           color:#1A191E;
           font-size:12px;
           @extend %center;
           @extend %max;
+          >em{
+            display: block;
+            border: 3px solid transparent;
+            border-top-color: #000;
+            @include ml(10rem);
+            margin-top:3px;
+          }
         }
         select{
           position:absolute;
@@ -499,6 +555,8 @@ ul{
     @include convertRem_W_H(27rem,27rem);
     @include mr(10rem);
     position:relative;
+    color:#ddd;
+    font-size:14px;
     &::after{
       content:"";
       position:absolute;
@@ -535,11 +593,11 @@ ul{
     @include height(80rem);
     >span{
       display:block;
+      @include mr(16rem);
     }
     div{
       color:#bbb;
       font-size:13px;
-      @include ml(16rem);
     }
   }
 }
@@ -608,10 +666,13 @@ ul{
     @include borderRadius(6rem);
     display:flex;
     justify-content: space-between;
-    @include mt(20rem);
+    @include mb(20rem);
     @include padding(0,30rem,0,30rem);
     &.cell{
       height:53px;
+    }
+    &:last-child{
+      margin-bottom:0;
     }
   }
   .ticket-amount{
@@ -619,6 +680,10 @@ ul{
     @include textIndent(20rem);
     display:flex;
     align-items:center;
+    .yen-show{
+      font-size:24px;
+      @include mr(8rem);
+    }
   }
   .ticket-box{
     display:flex;
@@ -663,11 +728,9 @@ ul{
   }
 }
 .unable-ticket-tips{
-  @include height(103rem);
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
-  flex-direction: column;
+  @include height(123rem);
+  @extend %center;
+  flex-direction:column;
   div{
     font-size:14px;
     color:#bbb;
