@@ -43,7 +43,12 @@ function relReady(){
         }
         $.extend(param,pubArgs);
     }
-    function getQueryString(e){var t=new RegExp("(^|&)"+e+"=([^&]*)(&|$)","i"),a=window.location.search.substr(1).match(t);return null!=a?decodeURI(a[2]):null}
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);
+        return null;
+    }
     // 读取cookies
     function getCookie(name) {
         var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
@@ -53,14 +58,14 @@ function relReady(){
     // 跳转结算中心
     function jumpSettlement(address_id){
         var cart = getQueryString("cart");
-        if(cart){
+        if(cart && cart != "null"){
             if(address_id){
                 cart = JSON.parse(cart);
                 cart.shippingParam.shippingId = address_id;
                 cart = JSON.stringify(cart);
             }
         }
-        window.history.replaceState('', "", "http://m.secoo.com/reactSettlement/index.html?cart="+cart);
+        window.history.replaceState('', "", "http://m.secoo.com/reactSettlement/index.html"+(cart&&cart!="null"?"?cart="+cart:""));
         window.history.go();
     }
     // 更新选择列表
@@ -70,12 +75,11 @@ function relReady(){
             url:"http://las.secoo.com/api/shipping/query?upk="+getCookie("Sid"),
             dataType:"json",
             success:function(data){
-                console.log(data);
                 // 选择收货地址列表
                 if(data.retCode == 0){
                     shippingList = data.shippingList;
                     var s_temp = "",shippingId = "",cart = JSON.parse(getQueryString("cart"));
-                    if(cart){
+                    if(cart && cart != "null"){
                         shippingId = cart.shippingParam.shippingId;
                     }
                     for(var i = 0; i < shippingList.length;i++){
@@ -115,6 +119,8 @@ function relReady(){
             var value = $(this).val() != "";
             if(value && mixinObjLen == index+1){
                 $(".secoo_btn",a_address).toggleClass("disabled",!value);
+            }else{
+                $(".secoo_btn",a_address).toggleClass("disabled",true);
             }
             return value;
         });
@@ -271,7 +277,6 @@ function relReady(){
                 },id_obj),
                 dataType:"jsonp",
                 success:function(data){
-                    console.log(data);
                     if(data.retCode == 0){
                         jumpSettlement(id_obj?id_obj.id:data.id);
                         updateSelectList(true);
@@ -318,7 +323,7 @@ function relReady(){
             alert("最多添加10条地址");
             return;
         }
-        var htmlStr = template.render('mixinAddress_tmpl',{title:"添加收货地址",del:false});
+        var htmlStr = template.render('mixinAddress_tmpl',{title:"添加收货地址",del:false,isDefault:!shippingList.length});
         $("body").append(htmlStr);
         a_address = $("#a-address-page-view");
         // page切换
@@ -334,7 +339,7 @@ function relReady(){
         });
         // 清空输入框内容
         $(".cell .close_box").on("tap",function(){
-            $(this).siblings("input").val("").focus();
+            $(this).hide().siblings("input").val("").focus();
             $(".secoo_btn",a_address).toggleClass("disabled",true);
         });
         // 显示删除图标
@@ -395,7 +400,7 @@ function relReady(){
         });
         // 清空输入框内容
         $(".cell .close_box").on("tap",function(){
-            $(this).siblings("input").val("").focus();
+            $(this).hide().siblings("input").val("").focus();
             $(".secoo_btn",a_address).toggleClass("disabled",true);
         });
         // 显示删除图标
@@ -419,7 +424,6 @@ function relReady(){
                     },
                     dataType:"json",
                     success:function(data){
-                        console.log(data);
                         if(data.retCode == 0){
                             updateSelectList(true);
                         }else{

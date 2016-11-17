@@ -26,7 +26,7 @@ var payment = {
             }
             dThis.attr("isClick",true);
             if($(this).attr("timeover") == 1){
-                window.location.href = "http://m.secoo.com/orderDetail.html?orderId="+orderId;
+                window.location.href = "http://m.secoo.com/appActivity/mOrderDetail.shtml?orderId="+orderId;
             }else{
                 switch (payname) {
                     case 'alipay':
@@ -270,7 +270,7 @@ var payment = {
     setPayMethod : function(orderId){
         var that = this,
             urlS = "http://las.secoo.com/api/cart/order_finish",
-            dataJson = {c_platform_type:3,upk:getCookie("Sid"),size : 2,orderId : orderId,canApplePay:false,weixinSupport:that.isWeiXin()},
+            dataJson = {c_channel:getCookie('channel'),c_platform_type:2,upk:getCookie("Sid"),size : 2,orderId : orderId,canApplePay:false,weixinSupport:that.isWeiXin()},
             payObj = {"2":"bankRemittance","4" : "weixinpay","5":"alipay","6":"onlinepay","7":"iouspay"};
         $.ajax({
             type : "GET",
@@ -312,7 +312,7 @@ var payment = {
                                     '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
                                     '<div class="cashier-first">',
                                     '<div class="bold">'+payWays[i].payName+'</div>',
-                                    '<span>'+payWays[i].desc+'</span>',
+                                    '<span>'+(payWays[i].desc || "")+'</span>',
                                     '</div>',
                                     '<span class="'+btnClass+'">',
                                     '<span class="path1"></span>',
@@ -325,7 +325,7 @@ var payment = {
                                     '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
                                     '<div class="cashier-first">',
                                     '<div class="bold">'+payWays[i].payName+'</div>',
-                                    '<span>'+payWays[i].desc+'</span>',
+                                    '<span>'+(payWays[i].desc || "")+'</span>',
                                     '</div>',
                                     '<span class="'+btnClass+'">',
                                     '<span class="path1"></span>',
@@ -338,7 +338,7 @@ var payment = {
                                     '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
                                     '<div class="cashier-first">',
                                     '<div class="bold">'+payWays[i].payName+'</div>',
-                                    '<span>'+payWays[i].desc+'</span>',
+                                    '<span>'+(payWays[i].desc || "")+'</span>',
                                     '</div>',
                                     '<span class="'+btnClass+'">',
                                     '<span class="path1"></span>',
@@ -351,7 +351,7 @@ var payment = {
                                     '<em class="pay-icon"><img src="'+payWays[i].payMethodIcon+'"/></em>',
                                     '<div class="cashier-first">',
                                     '<div class="bold">'+payWays[i].payName+'</div>',
-                                    '<span>'+(payWays[i].desc?payWays[i].desc:"")+'</span>',
+                                    '<span>'+(payWays[i].desc || "")+'</span>',
                                     '</div>',
                                     '<span class="'+btnClass+'">',
                                     '<span class="path1"></span>',

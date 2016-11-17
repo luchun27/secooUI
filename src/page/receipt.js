@@ -174,4 +174,7 @@ class InvalideProList extends React.Component{
 var pageEle = document.getElementById("receipt-page-view");
 // 初始化发票主体
 ReactDOM.render(
-    <InvalideProList data={confirmJson.invoice} />,pageEle);
+    <ReceiptMain data={confirmJson.invoice} />,pageEle);
+ReactDOM.render(
+    <ReceiptTips/>,
+    document.getElementById("ticket-pops"));
